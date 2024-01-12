@@ -121,16 +121,16 @@ CREATE TABLE IF NOT EXISTS envios
         metodo VARCHAR(255) NOT NULL,
      	courrier VARCHAR(50) NOT NULL,
         costo DECIMAL(10, 2) NOT NULL,
-	tiempo_entrega DATETIME
+		tiempo_entrega DATETIME
 );
 
   
 -- Tabla Detalle de la Orden
 CREATE TABLE IF NOT EXISTS detalle_orden
   (
-	    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
+			id_detalle INT AUTO_INCREMENT PRIMARY KEY,
             cantidad INT,
-            precio_total DECIMAL(10, 2) NOT NULL,
+        	precio_total DECIMAL(10, 2) NOT NULL,
             id_producto INT,
             id_categoria INT,
             id_usuario INT,
