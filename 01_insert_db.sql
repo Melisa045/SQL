@@ -22,7 +22,10 @@ INSERT INTO historial_compras (id_historial, fecha, estado, id_usuario) VALUES
 (7, '2024-06-07 08:45:00', 'Cancelado', 7),
 (8, '2024-06-08 13:10:00', 'Completado', 8),
 (9, '2024-06-09 15:30:00', 'Pendiente', 9),
-(10, '2024-06-10 10:00:00', 'Completado', 10);
+(10, '2024-06-10 10:00:00', 'Completado', 10),
+(11, '2024-06-08 13:10:00', 'Cancelado', 1),
+(12, '2024-06-09 15:30:00', 'Completado', 2),
+(13, '2024-06-10 10:00:00', 'Pendiente', 3);
 
 
 INSERT INTO categorias (id_categoria, nombre,descripcion,fecha_creacion) VALUES 
@@ -38,23 +41,31 @@ INSERT INTO categorias (id_categoria, nombre,descripcion,fecha_creacion) VALUES
 (10, 'Automotriz','Accesorios y productos para automóviles',NOW());
 
 
-INSERT INTO productos (id_producto, nombre, description, price, cantidad) VALUES
-(1, 'Smartphone X', 'Potente smartphone con cámara dual', 599.99, 50),
-(2, 'Camiseta de Algodón', 'Camiseta cómoda y de alta calidad', 19.99, 100),
-(3, 'Juego de Sartenes', 'Set de sartenes antiadherentes', 89.95, 30),
-(4, 'Balón de Fútbol', 'Balón oficial para partidos', 29.99, 20),
-(5, 'Libro "Aventuras en el Espacio"', 'Novela de ciencia ficción', 14.50, 80),
-(6, 'Muñeca Interactiva', 'Muñeca que habla y realiza acciones', 39.99, 15),
-(7, 'Collar de Diamantes', 'Collar elegante con diamantes', 499.99, 10),
-(8, 'Pack de Snacks Saludables', 'Variado pack de snacks saludables', 29.95, 50),
-(9, 'Kit de Cuidado Facial', 'Productos para el cuidado facial', 59.99, 25),
-(10, 'Limpiaparabrisas Universal', 'Limpiaparabrisas de calidad para automóviles', 12.75, 40);
+INSERT INTO productos (id_producto, nombre, description, price, cantidad,id_categoria) VALUES
+(1, 'Smartphone X', 'Potente smartphone con cámara dual', 599.99, 50,1),
+(2, 'Camiseta de Algodón', 'Camiseta cómoda y de alta calidad', 19.99, 100,2),
+(3, 'Juego de Sartenes', 'Set de sartenes antiadherentes', 89.95, 30,3),
+(4, 'Balón de Fútbol', 'Balón oficial para partidos', 29.99, 20,4),
+(5, 'Libro "Aventuras en el Espacio"', 'Novela de ciencia ficción', 14.50, 80,5),
+(6, 'Muñeca Interactiva', 'Muñeca que habla y realiza acciones', 39.99, 15,6),
+(7, 'Collar de Diamantes', 'Collar elegante con diamantes', 499.99, 10,7),
+(8, 'Pack de Snacks Saludables', 'Variado pack de snacks saludables', 29.95, 50,8),
+(9, 'Kit de Cuidado Facial', 'Productos para el cuidado facial', 59.99, 25,9),
+(10, 'Limpiaparabrisas Universal', 'Limpiaparabrisas de calidad para automóviles', 12.75, 40,10),
+(11, 'Smartwatch', 'clásico y prémium', 309.99, 50,1),
+(12, 'laptops', 'LAPTOP ACER ASPIRE 5 CORE I5', 1997.99, 100,2),
+(13, 'Tablets', 'Tablet lenovo m10 plus (3ra gen)', 589.95, 30,3);
+
 
 
 INSERT INTO detalle_historial (price, cantidad, comentario, id_historial, id_usuario, id_producto, id_categoria) VALUES
 (59.99, 2, 'Buena compra', 1, 3, 1, 1),
 (19.99, 1, 'Talla correcta', 1, 2, 2, 2),
 (89.95, 1, 'Excelente calidad', 1, 1, 3, 3),
+(45.78, 2, 'Buena compra', 1, 3, 1, 1),
+(19.99, 2, 'Excelente calidad', 1, 2, 1, 1),
+(68.23, 2, 'Excelente calidad', 2, 1, 1, 1),
+(42.11, 2, 'Talla correcta', 1, 2, 2, 2),
 (29.99, 3, 'Divertido para jugar en equipo', 2, 4, 4, 4),
 (14.50, 1, 'Interesante trama', 2, 3, 5, 5),
 (39.99, 1, 'Ideal para regalar', 3, 1, 6, 6),
@@ -63,6 +74,11 @@ INSERT INTO detalle_historial (price, cantidad, comentario, id_historial, id_usu
 (59.99, 1, 'Noté mejoras en mi piel', 4, 3, 9, 9),
 (12.75, 1, 'Fácil instalación', 5, 1, 10, 10);
 
+
+USE marketplace_db;
+
+select * from productos;
+select * from categorias;
   
 INSERT INTO proveedores (id_proveedor,nombre, contacto, direccion, estado, info_financiera, tipo) VALUES
 (1,'Proveedor A', 999888777, 'Calle Principal 123', 'Activo', 'Cuenta Bancaria: XXXX-XXXX-XXXX-XXXX', 'Electrónicos'),
@@ -167,7 +183,7 @@ INSERT INTO comentarios (id_comentario, comentario, fecha, estado, calificacion,
 (9, '¡Me encanta este producto! Compraría de nuevo.', '2024-06-09 15:30:00', 'Pendiente', '5 estrellas', 9, 9),
 (10, 'Buen servicio, producto conforme a la descripción.', '2024-06-10 08:45:00', 'Aprobado', '4 estrellas', 10, 10);
 
-  
+  /*
 select * from usuarios;
 select * from historial_compras;
 select * from categorias;
@@ -181,3 +197,5 @@ select * from detalle_orden;
 select * from carrito;
 select * from detalle_carrito;
 select * from comentarios;
+*/
+

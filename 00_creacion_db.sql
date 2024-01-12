@@ -46,7 +46,9 @@ CREATE TABLE IF NOT EXISTS productos
             nombre VARCHAR(255) NOT NULL,
         	description VARCHAR(255),
             price DECIMAL(10, 2) NOT NULL,
-		    cantidad INT
+		    cantidad INT,
+            id_categoria INT,
+            FOREIGN KEY(id_categoria) REFERENCES categorias(id_categoria)
   );
 
 
