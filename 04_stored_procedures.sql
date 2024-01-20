@@ -1,5 +1,8 @@
 
--- 1. Stored Procedures : Calcular el Monto total por Orden
+USE marketplace_db;
+
+-- 1. Calcular el Monto total por Orden
+
 DELIMITER //
 CREATE PROCEDURE CalcularTotalOrden(IN orden_id INT)
 BEGIN
@@ -13,10 +16,27 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL CalcularTotalOrden(1);
+-- 2. Realizar el orden de una data Escogiendo el Nombre de la tabla, La Columna y Orden que se mostrará
+
+DELIMITER //
+CREATE PROCEDURE sp_OrdenarTabla(
+    IN p_nombre_tabla VARCHAR(255),
+    IN p_campo_ordenamiento VARCHAR(255),
+    IN p_orden VARCHAR(4)
+)
+BEGIN
+    SET @sql_query = CONCAT('SELECT * FROM ', p_nombre_tabla, ' ORDER BY ', p_campo_ordenamiento, ' ', p_orden);
+    PREPARE stmt FROM @sql_query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END //
+DELIMITER ;
+
+CALL sp_OrdenarTabla('comentarios','estado','DESC');
 
 
--- 2. Eliminar un item del carrito de compras
+-- 3. Eliminar un item del carrito de compras
+
 DELIMITER //
 CREATE PROCEDURE EliminarItemCarrito(IN carrito_id INT, IN detalle_carrito_id INT)
 BEGIN
@@ -42,7 +62,8 @@ DELIMITER ;
 CALL EliminarItemCarrito(10, 10);
 
 
--- 3. Crear un item del carrito de compras
+-- 4. Crear un item del carrito de compras
+
 DELIMITER //
 CREATE PROCEDURE AgregarItemAlCarrito(
     IN carrito_id INT,
