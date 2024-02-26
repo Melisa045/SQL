@@ -1,8 +1,7 @@
 
 USE marketplace_db;
 
--- 1. 
--- Creación de la Tabla log de productos
+-- 1. Creación de la Tabla log de productos
 CREATE TABLE IF NOT EXISTS log_productos
              (
                           log_id                     INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,7 +16,7 @@ CREATE TABLE IF NOT EXISTS log_productos
                         
              );
 
-
+SELECT * FROM log_productos;
 
 -- Creación de un Trigger BEFORE para Registrar Cambios en la tabla Productos en la Tabla de Log
 DELIMITER //
@@ -27,12 +26,17 @@ BEFORE UPDATE ON productos
 FOR EACH ROW
 BEGIN
   INSERT INTO log_productos (id_producto, usuario_modificacion, fecha_modificacion, hora_modificacion, accion_realizada, valor_anterior, valor_actual)
-  VALUES (NEW.id_producto, 'nombre_de_usuario', CURDATE(), CURTIME(), 'update', NEW.nombre, NEW.nombre);
+  VALUES (NEW.id_producto, 'nombre_de_usuario', CURDATE(), CURTIME(), 'before update', NEW.nombre, NEW.nombre);
 END;
 //
 DELIMITER ;
 
+SELECT * FROM productos;
+SELECT * FROM log_productos;
 
+UPDATE productos
+SET precio =23.51
+WHERE id_producto=2
 
 -- Modificación de un Trigger AFTER para Registrar Cambios en la tabla Productos en la Tabla de Log
 DELIMITER //
@@ -45,18 +49,18 @@ BEGIN
     DECLARE valor_actual VARCHAR(255);
 
     -- Determinar la columna modificada
-    IF OLD.price <> NEW.price THEN
-        SET columna_modificada = 'price';
-        SET valor_anterior = OLD.price;
-        SET valor_actual = NEW.price;
+    IF OLD.precio <> NEW.precio THEN
+        SET columna_modificada = 'precio';
+        SET valor_anterior = OLD.precio;
+        SET valor_actual = NEW.precio;
     ELSEIF OLD.cantidad <> NEW.cantidad THEN
         SET columna_modificada = 'cantidad';
         SET valor_anterior = OLD.cantidad;
         SET valor_actual = NEW.cantidad;
-    ELSEIF OLD.description <> NEW.description THEN
-        SET columna_modificada = 'description';
-        SET valor_anterior = OLD.description;
-        SET valor_actual = NEW.description;
+    ELSEIF OLD.descripcion <> NEW.descripcion THEN
+        SET columna_modificada = 'descripcion';
+        SET valor_anterior = OLD.descripcion;
+        SET valor_actual = NEW.descripcion;
     ELSEIF OLD.nombre <> NEW.nombre THEN
         SET columna_modificada = 'nombre';
         SET valor_anterior = OLD.nombre;
@@ -73,8 +77,16 @@ END;
 DELIMITER ;
 
 
--- 2. 
--- Creación de la Tabla log de usuarios
+
+UPDATE productos
+SET precio =23.55
+WHERE id_producto=2;
+
+SELECT * FROM productos;
+SELECT * FROM log_productos;
+
+
+-- 2. Creación de la Tabla log de usuarios
 USE marketplace_db;
 
 -- Crear tabla de log para usuarios
@@ -87,6 +99,7 @@ CREATE TABLE IF NOT EXISTS log_usuarios (
     fecha_modificacion DATE NOT NULL,
     hora_modificacion TIME NOT NULL
 );
+SELECT * FROM log_usuarios;
 
 -- Crear trigger BEFORE UPDATE
 DELIMITER //
@@ -100,14 +113,21 @@ BEGIN
     VALUES (OLD.id_usuario, 'tipo_documento', OLD.tipo_documento, NEW.tipo_documento, CURDATE(), CURTIME());
   END IF;
 
-  IF NEW.nroDoc <> OLD.nroDoc THEN
+  IF NEW.numero_documento <> OLD.numero_documento THEN
     INSERT INTO log_usuarios (id_usuario, campo_modificado, valor_anterior, valor_actual, fecha_modificacion, hora_modificacion)
-    VALUES (OLD.id_usuario, 'nroDoc', OLD.nroDoc, NEW.nroDoc, CURDATE(), CURTIME());
+    VALUES (OLD.id_usuario, 'nroDoc', OLD.numero_documento, NEW.numero_documento, CURDATE(), CURTIME());
   END IF;
 
 END;
 //
 DELIMITER ;
+
+SELECT * FROM usuarios;
+SELECT * FROM log_usuarios;
+
+UPDATE usuarios
+SET nroDoc="123456333"
+WHERE id_usuario=1
 
 
 -- Crear trigger AFTER INSERT
@@ -123,7 +143,8 @@ END;
 //
 DELIMITER ;
 
-INSERT INTO usuarios (id_usuario,tipo_documento, nroDoc, nombre, apellido, correo, contrasena, telefono, fecha_nacimiento) VALUES
-(11,'DNI', 123456111, 'José', 'Pérez', 'jose.perez@email.com', 'contraseña123', '987654321', '1990-05-15 00:00:00')
+INSERT INTO usuarios (id_usuario,tipo_documento, numero_documento, nombre, apellido, correo, contrasena, telefono, fecha_nacimiento) VALUES
+(11,'DNI', 123456111, 'José', 'Pérez', 'jose.perez@email.com', 'contraseña123', '987654321', '1990-05-15 00:00:00');
 
+SELECT * FROM log_usuarios;
 

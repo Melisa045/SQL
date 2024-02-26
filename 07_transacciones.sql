@@ -24,7 +24,7 @@ DELETE FROM proveedores WHERE id_proveedor = 3;
 START transaction;
 
 -- Insertar ocho nuevos registros de productos deportivos en la tabla 'product'
-INSERT INTO productos (id_producto, nombre, description, price, cantidad,id_categoria) VALUES
+INSERT INTO productos (id_producto, nombre, descripcion, precio, cantidad,id_categoria) VALUES
 (14, 'Auriculares Inalámbricos', 'Auriculares Bluetooth con cancelación de ruido', 79.99, 50, 1),
 (15, 'Bicicleta de Montaña', 'Bicicleta todo terreno con suspensión', 499.95, 15, 2),
 (16, 'Cámara DSLR Profesional', 'Cámara de alta resolución para fotografía profesional', 899.99, 10, 3),
@@ -34,7 +34,7 @@ INSERT INTO productos (id_producto, nombre, description, price, cantidad,id_cate
 savepoint savepoint4;
 
 -- Continuar con la inserción de registros
-INSERT INTO productos(id_producto,nombre,description,price,cantidad,id_categoria) VALUES
+INSERT INTO productos(id_producto,nombre,descripcion,precio,cantidad,id_categoria) VALUES
 (18, 'Impresora Multifunción', 'Impresora que imprime, escanea y copia', 129.75, 20, 5),
 (19, 'Teclado Gaming RGB', 'Teclado mecánico para juegos con retroiluminación RGB', 69.99, 25, 6),
 (20, 'Silla Ergonómica de Oficina', 'Silla ajustable para una postura cómoda durante horas de trabajo', 149.95, 15, 7),

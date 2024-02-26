@@ -4,17 +4,16 @@ CREATE DATABASE IF NOT EXISTS marketplace_db;
 USE marketplace_db;
  
 -- Tabla de Usuarios
-CREATE TABLE IF NOT EXISTS usuarios
-  (
-     	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-        tipo_documento VARCHAR(50) NOT NULL,
-        dni INT NOT NULL UNIQUE,
-        nombre VARCHAR(50) NOT NULL,
-     	apellido VARCHAR(255) NOT NULL,
-        correo VARCHAR(255) NOT NULL UNIQUE,
-     	contrasena VARCHAR(50) NOT NULL,
-        telefono VARCHAR(50),
-		fecha_nacimiento DATETIME
+CREATE TABLE IF NOT EXISTS usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    tipo_documento VARCHAR(50) NOT NULL,
+    numero_documento VARCHAR(255) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL UNIQUE,
+    contrasena VARCHAR(50) NOT NULL,
+    telefono VARCHAR(50),
+    fecha_nacimiento DATETIME
 );
 
 
@@ -44,8 +43,8 @@ CREATE TABLE IF NOT EXISTS productos
   (
      	 	id_producto INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(255) NOT NULL,
-        	description VARCHAR(255),
-            price DECIMAL(10, 2) NOT NULL,
+          	descripcion  VARCHAR(255),
+            precio DECIMAL(10, 2) NOT NULL,
 		    cantidad INT,
             id_categoria INT,
             FOREIGN KEY(id_categoria) REFERENCES categorias(id_categoria)
@@ -56,7 +55,7 @@ CREATE TABLE IF NOT EXISTS productos
 CREATE TABLE IF NOT EXISTS detalle_historial
   (
      	 	id_detalle_historial INT AUTO_INCREMENT PRIMARY KEY,
-			price DECIMAL(10, 2) NOT NULL,
+			precio DECIMAL(10, 2) NOT NULL,
 		    cantidad INT NOT NULL,
             comentario VARCHAR(255),
             id_historial INT,
@@ -105,11 +104,21 @@ CREATE TABLE IF NOT EXISTS ordenes
   (
 			id_orden INT AUTO_INCREMENT PRIMARY KEY,
             fecha DATETIME,
-        	estado  VARCHAR(255),
-            id_promocion INT,
-            FOREIGN KEY(id_promocion) REFERENCES promociones(id_promocion)
+        	estado  VARCHAR(255)
+        --  id_promocion INT,
+		--  FOREIGN KEY(id_promocion) REFERENCES promociones(id_promocion)
   );
 
+
+-- Tabla de Relación entre Ordenes y Promociones (muchos a muchos)
+CREATE TABLE IF NOT EXISTS ordenes_promociones
+(
+    id_orden INT,
+    id_promocion INT,
+    PRIMARY KEY (id_orden, id_promocion),
+    FOREIGN KEY(id_orden) REFERENCES ordenes(id_orden),
+    FOREIGN KEY(id_promocion) REFERENCES promociones(id_promocion)
+);
 
 -- Tabla de Envíos
 CREATE TABLE IF NOT EXISTS envios
@@ -130,7 +139,7 @@ CREATE TABLE IF NOT EXISTS detalle_orden
   (
 			id_detalle INT AUTO_INCREMENT PRIMARY KEY,
             cantidad INT,
-        	precio_total DECIMAL(10, 2) NOT NULL,
+        	precio_unitario DECIMAL(10, 2) NOT NULL,
             id_producto INT,
             id_categoria INT,
             id_usuario INT,
@@ -158,7 +167,7 @@ CREATE TABLE IF NOT EXISTS detalle_carrito
   (
 			id_detalle_carrito INT AUTO_INCREMENT PRIMARY KEY,
             cantidad INT,
-        	precio_total DECIMAL(10, 2) NOT NULL,
+        	precio_unitario DECIMAL(10, 2) NOT NULL,
             id_carrito INT,
             id_orden INT,
             id_producto INT,

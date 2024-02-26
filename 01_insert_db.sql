@@ -1,5 +1,5 @@
 
-INSERT INTO usuarios (id_usuario,tipo_documento, dni, nombre, apellido, correo, contrasena, telefono, fecha_nacimiento) VALUES
+INSERT INTO usuarios (id_usuario,tipo_documento, numero_documento, nombre, apellido, correo, contrasena, telefono, fecha_nacimiento) VALUES
 (1,'DNI', 123456789, 'Juan', 'Pérez', 'juan.perez@email.com', 'contraseña123', '987654321', '1990-05-15 00:00:00'),
 (2,'Pasaporte', 987654321, 'Ana', 'Gómez', 'ana.gomez@email.com', 'clave_segura', '654321987', '1985-08-22 00:00:00'),
 (3,'DNI', 567890123, 'Pedro', 'Martínez', 'pedro.martinez@email.com', 'password123', '789012345', '1992-02-10 00:00:00'),
@@ -41,7 +41,7 @@ INSERT INTO categorias (id_categoria, nombre,descripcion,fecha_creacion) VALUES
 (10, 'Automotriz','Accesorios y productos para automóviles',NOW());
 
 
-INSERT INTO productos (id_producto, nombre, description, price, cantidad,id_categoria) VALUES
+INSERT INTO productos (id_producto, nombre, descripcion, precio, cantidad,id_categoria) VALUES
 (1, 'Smartphone X', 'Potente smartphone con cámara dual', 599.99, 50,1),
 (2, 'Camiseta de Algodón', 'Camiseta cómoda y de alta calidad', 19.99, 100,2),
 (3, 'Juego de Sartenes', 'Set de sartenes antiadherentes', 89.95, 30,3),
@@ -58,7 +58,7 @@ INSERT INTO productos (id_producto, nombre, description, price, cantidad,id_cate
 
 
 
-INSERT INTO detalle_historial (price, cantidad, comentario, id_historial, id_usuario, id_producto, id_categoria) VALUES
+INSERT INTO detalle_historial (precio, cantidad, comentario, id_historial, id_usuario, id_producto, id_categoria) VALUES
 (59.99, 2, 'Buena compra', 1, 3, 1, 1),
 (19.99, 1, 'Talla correcta', 1, 2, 2, 2),
 (89.95, 1, 'Excelente calidad', 1, 1, 3, 3),
@@ -75,11 +75,6 @@ INSERT INTO detalle_historial (price, cantidad, comentario, id_historial, id_usu
 (12.75, 1, 'Fácil instalación', 5, 1, 10, 10);
 
 
-USE marketplace_db;
-
-select * from productos;
-select * from categorias;
-  
 INSERT INTO proveedores (id_proveedor,nombre, contacto, direccion, estado, info_financiera, tipo) VALUES
 (1,'Proveedor A', 999888777, 'Calle Principal 123', 'Activo', 'Cuenta Bancaria: XXXX-XXXX-XXXX-XXXX', 'Electrónicos'),
 (2,'Proveedor B', 888777666, 'Avenida Secundaria 456', 'Activo', 'Cuenta Bancaria: YYYY-YYYY-YYYY-YYYY', 'Ropa'),
@@ -94,30 +89,38 @@ INSERT INTO proveedores (id_proveedor,nombre, contacto, direccion, estado, info_
 
 
 INSERT INTO promociones (id_promocion, nombre, descuento, fecha_inicio, fecha_fin, id_producto, id_categoria, id_proveedor) VALUES
-(1, 'Oferta Verano', 0.15, '2024-06-01 00:00:00', '2024-06-30 23:59:59', 1, 1, 1),
-(2, 'Descuento Ropa', 0.20, '2024-07-01 00:00:00', '2024-07-15 23:59:59', 2, 2, 2),
-(3, 'Liquidación Hogar', 0.30, '2024-08-01 00:00:00', '2024-08-31 23:59:59', 3, 3, 3),
-(4, 'Especial Deportes', 0.25, '2024-09-01 00:00:00', '2024-09-15 23:59:59', 4, 4, 4),
-(5, 'Promo Libros', 0.18, '2024-10-01 00:00:00', '2024-10-31 23:59:59', 5, 5, 5),
-(6, 'Juguetes Rebajados', 0.22, '2024-11-01 00:00:00', '2024-11-15 23:59:59', 6, 6, 6),
-(7, 'Descuento Joyería', 0.15, '2024-12-01 00:00:00', '2024-12-31 23:59:59', 7, 7, 7),
-(8, 'Oferta Alimentación', 0.25, '2025-01-01 00:00:00', '2025-01-15 23:59:59', 8, 8, 8),
-(9, 'Cuidado Facial en Oferta', 0.20, '2025-02-01 00:00:00', '2025-02-28 23:59:59', 9, 9, 9),
-(10, 'Accesorios Automotrices', 0.15, '2025-03-01 00:00:00', '2025-03-15 23:59:59', 10, 10, 10);
+(1, 'Oferta Verano', 0.15, '2024-01-01 00:00:00', '2024-06-30 23:59:59', 1, 1, 4),
+(2, 'Oferta Verano DivertiKids', 0.35, '2024-01-01 00:00:00', '2024-06-30 23:59:59', 2, 2, 4),
+(3, 'Oferta Verano EnjoyFamily', 0.55, '2024-01-01 00:00:00', '2024-06-30 23:59:59', 5, 5, 4),
+(4, 'Descuento Ropa', 0.20, '2024-01-01 00:00:00', '2024-07-15 23:59:59', 2, 2, 4),
+(5, 'Liquidación Hogar', 0.30, '2024-04-01 00:00:00', '2024-08-31 23:59:59', 3, 3, 5),
+(6, 'Especial Deportes', 0.25, '2024-04-01 00:00:00', '2024-09-15 23:59:59', 4, 4, 4),
+(7, 'Promo Libros', 0.18, '2024-05-01 00:00:00', '2024-10-31 23:59:59', 5, 5, 5),
+(8, 'Juguetes Rebajados', 0.22, '2024-07-01 00:00:00', '2024-11-15 23:59:59', 6, 6, 6),
+(9, 'Descuento Joyería', 0.15, '2024-08-01 00:00:00', '2024-12-31 23:59:59', 7, 7, 7),
+(10, 'Oferta Alimentación', 0.25, '2025-08-01 00:00:00', '2025-01-15 23:59:59', 8, 8, 8),
+(11, 'Cuidado Facial en Oferta', 0.20, '2025-09-01 00:00:00', '2025-02-28 23:59:59', 9, 9, 9),
+(12, 'Accesorios Automotrices', 0.15, '2025-09-01 00:00:00', '2025-03-15 23:59:59', 10, 10, 10);
 
 
-INSERT INTO ordenes (id_orden, fecha, estado, id_promocion) VALUES
-(1, '2024-06-01 10:15:00', 'En Proceso', 1),
-(2, '2024-06-02 12:30:00', 'Enviado', 2),
-(3, '2024-06-03 14:45:00', 'Entregado', 3),
-(4, '2024-06-04 09:00:00', 'En Proceso', 4),
-(5, '2024-06-05 11:20:00', 'Enviado', 5),
-(6, '2024-06-06 16:00:00', 'Entregado', 6),
-(7, '2024-06-07 08:45:00', 'En Proceso', 7),
-(8, '2024-06-08 13:10:00', 'Enviado', 8),
-(9, '2024-06-09 15:30:00', 'Entregado', 9),
-(10, '2024-06-10 10:00:00', 'Enviado', 10);
+INSERT INTO ordenes (id_orden, fecha, estado) VALUES
+(1, '2024-06-01 10:15:00', 'En Proceso'),
+(2, '2024-06-02 12:30:00', 'Enviado'),
+(3, '2024-06-03 14:45:00', 'Entregado'),
+(4, '2024-06-04 09:00:00', 'En Proceso'),
+(5, '2024-06-05 11:20:00', 'Enviado'),
+(6, '2024-06-06 16:00:00', 'Entregado'),
+(7, '2024-06-07 08:45:00', 'En Proceso'),
+(8, '2024-06-08 13:10:00', 'Enviado'),
+(9, '2024-06-09 15:30:00', 'Entregado'),
+(10, '2024-06-10 10:00:00', 'Enviado');
 
+INSERT INTO ordenes_promociones(id_orden,id_promocion) VALUES
+(1,1),
+(1,2),
+(1,3),
+(2,7),
+(2,1);
 
 INSERT INTO envios (id_envio, direccion, estado, fecha_entrega, metodo, courrier, costo, tiempo_entrega) VALUES
 (1, 'Calle Principal 123', 'En Proceso', '2024-06-15 14:00:00', 'Estándar', 'EnvíoExpress', 15.99, NULL),
@@ -132,7 +135,7 @@ INSERT INTO envios (id_envio, direccion, estado, fecha_entrega, metodo, courrier
 (10, 'Bulevar Automotriz 707', 'En Proceso', '2024-06-24 09:45:00', 'Express', 'AutoRápido', 19.50, NULL);
 
 
-INSERT INTO detalle_orden (id_detalle, cantidad, precio_total, id_producto, id_categoria, id_usuario, id_envio, id_orden) VALUES
+INSERT INTO detalle_orden (id_detalle, cantidad, precio_unitario, id_producto, id_categoria, id_usuario, id_envio, id_orden) VALUES
 (1, 2, 35.99, 1, 1, 1, 1, 1),
 (2, 1, 25.50, 2, 2, 2, 2, 2),
 (3, 3, 45.75, 3, 3, 3, 3, 3),
@@ -142,8 +145,11 @@ INSERT INTO detalle_orden (id_detalle, cantidad, precio_total, id_producto, id_c
 (7, 3, 90.00, 7, 7, 7, 7, 7),
 (8, 2, 31.50, 8, 8, 8, 8, 8),
 (9, 1, 28.99, 9, 9, 9, 9, 9),
-(10, 4, 65.00, 10, 10, 10, 10, 10);
-
+(10, 4, 65.00, 10, 10, 10, 10, 10),
+(11, 2, 35.99, 1, 1, 1, 1, 1),
+(12, 1, 25.50, 2, 2, 2, 2, 2),
+(13, 2, 50, 1, 1, 1, 1, 1),
+(14, 1, 25.50, 2, 2, 2, 2, 2);
 
 INSERT INTO carrito (id_carrito, fecha_creacion, id_orden) VALUES
 (1, '2024-06-01 10:15:00', 1),
@@ -158,10 +164,10 @@ INSERT INTO carrito (id_carrito, fecha_creacion, id_orden) VALUES
 (10, '2024-06-10 10:00:00', 10);
 
 
-INSERT INTO detalle_carrito (id_detalle_carrito, cantidad, precio_total, id_carrito, id_orden, id_producto, id_categoria, id_proveedor) VALUES
-(1, 2, 35.99, 1, 1, 1, 1, 1),
-(2, 1, 25.50, 2, 2, 2, 2, 2),
-(3, 3, 45.75, 3, 3, 3, 3, 3),
+INSERT INTO detalle_carrito (id_detalle_carrito, cantidad, precio_unitario, id_carrito, id_orden, id_producto, id_categoria, id_proveedor) VALUES
+(1, 2, 35.99, 1, 1, 1, 1, 4),
+(2, 1, 25.50, 2, 2, 2, 2, 4),
+(3, 3, 45.75, 3, 3, 3, 3, 4),
 (4, 4, 80.00, 4, 4, 4, 4, 4),
 (5, 2, 37.98, 5, 5, 5, 5, 5),
 (6, 1, 44.99, 6, 6, 6, 6, 6),
@@ -182,20 +188,4 @@ INSERT INTO comentarios (id_comentario, comentario, fecha, estado, calificacion,
 (8, 'Calidad regular, esperaba más.', '2024-06-08 13:00:00', 'Rechazado', '2 estrellas', 8, 8),
 (9, '¡Me encanta este producto! Compraría de nuevo.', '2024-06-09 15:30:00', 'Pendiente', '5 estrellas', 9, 9),
 (10, 'Buen servicio, producto conforme a la descripción.', '2024-06-10 08:45:00', 'Aprobado', '4 estrellas', 10, 10);
-
-  /*
-select * from usuarios;
-select * from historial_compras;
-select * from categorias;
-select * from productos;
-select * from detalle_historial;
-select * from proveedores;
-select * from promociones;
-select * from ordenes;
-select * from envios;
-select * from detalle_orden;
-select * from carrito;
-select * from detalle_carrito;
-select * from comentarios;
-*/
 

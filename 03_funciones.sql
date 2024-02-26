@@ -1,7 +1,8 @@
 USE marketplace_db;
 -- 1. Obtener el historial del detalle de las compras por Usuario
 DELIMITER //
-CREATE FUNCTION ObtenerHistorialComprasPorUsuario(usuario_id INT) RETURNS VARCHAR(255)
+CREATE FUNCTION obtener_historial_compras_por_usuario(usuario_id INT) 
+RETURNS VARCHAR(255)
 DETERMINISTIC
 BEGIN
     DECLARE resultado VARCHAR(255);
@@ -19,12 +20,12 @@ BEGIN
 END //
 DELIMITER ;
 
-select ObtenerHistorialComprasPorUsuario(1);
+select obtener_historial_compras_por_usuario(1);
 
 
 -- 2.  Obtener productos en una categoría específica: Electrónicos,Ropa,Libros
 DELIMITER //
-CREATE FUNCTION ObtenerProductosPorCategoria(categoria_nombre VARCHAR(45))
+CREATE FUNCTION obtener_productos_por_categoria(categoria_nombre VARCHAR(45)) 
 RETURNS VARCHAR(255)
 DETERMINISTIC
 BEGIN
@@ -37,12 +38,12 @@ BEGIN
 END //
 DELIMITER ;
 
-SELECT ObtenerProductosPorCategoria('Electrónicos') AS Resultado;
+SELECT obtener_productos_por_categoria('Electrónicos') AS Resultado;
 
 
 -- 3. Calcular Descuento Total de una promoción por Ordenes
 DELIMITER //
-CREATE FUNCTION CalcularDescuentoTotal(orden_id INT) 
+CREATE FUNCTION calcular_descuento_total(orden_id INT) 
 RETURNS DECIMAL(10, 2)
 DETERMINISTIC
 BEGIN
@@ -56,5 +57,5 @@ BEGIN
 END //
 DELIMITER ;
 
-SELECT CalcularDescuentoTotal(1);
+SELECT calcular_descuento_total(1);
 

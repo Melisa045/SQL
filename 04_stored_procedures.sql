@@ -2,9 +2,8 @@
 USE marketplace_db;
 
 -- 1. Calcular el Monto total por Orden
-
 DELIMITER //
-CREATE PROCEDURE CalcularTotalOrden(IN orden_id INT)
+CREATE PROCEDURE calcular_total_orden(IN orden_id INT)
 BEGIN
     DECLARE total DECIMAL(10, 2);
 
@@ -16,10 +15,13 @@ BEGIN
 END //
 DELIMITER ;
 
--- 2. Realizar el orden de una data Escogiendo el Nombre de la tabla, La Columna y Orden que se mostrará
+CALL calcular_total_orden(1);
+select * from detalle_orden;
 
+
+-- 2. Realizar el orden de una data Escogiendo el Nombre de la tabla, La Columna y Orden que se mostrará
 DELIMITER //
-CREATE PROCEDURE sp_OrdenarTabla(
+CREATE PROCEDURE ordenar_tabla(
     IN p_nombre_tabla VARCHAR(255),
     IN p_campo_ordenamiento VARCHAR(255),
     IN p_orden VARCHAR(4)
@@ -32,13 +34,12 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL sp_OrdenarTabla('comentarios','estado','DESC');
+CALL ordenar_tabla('comentarios','estado','DESC');
 
 
 -- 3. Eliminar un item del carrito de compras
-
 DELIMITER //
-CREATE PROCEDURE EliminarItemCarrito(IN carrito_id INT, IN detalle_carrito_id INT)
+CREATE PROCEDURE eliminar_item_carrito(IN carrito_id INT, IN detalle_carrito_id INT)
 BEGIN
     DECLARE existe_carrito INT;
 
@@ -59,13 +60,12 @@ END //
 
 DELIMITER ;
 
-CALL EliminarItemCarrito(10, 10);
-
+CALL eliminar_item_carrito(10, 10);
+select * from detalle_carrito;
 
 -- 4. Crear un item del carrito de compras
-
 DELIMITER //
-CREATE PROCEDURE AgregarItemAlCarrito(
+CREATE PROCEDURE agregar_item_carrito(
     IN carrito_id INT,
     IN producto_id INT,
     IN cantidad INT,
@@ -91,5 +91,5 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL AgregarItemAlCarrito(10, 8,3, 29.95);
-
+CALL agregar_item_carrito(10, 7,3, 29.95);
+select * from detalle_carrito;
