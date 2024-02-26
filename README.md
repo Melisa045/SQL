@@ -21,7 +21,7 @@ Para acceder a detalles técnicos específicos, le invitamos a revisar la docume
 
   
 
-Ver documentación aquí.
+[Ver documentación aquí.](https://github.com/Melisa045/SQL/blob/main/Proyecto%20DB%20SQL%20Melisa%20Higa.pdf)
 
   
 
