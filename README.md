@@ -25,7 +25,7 @@ Para acceder a detalles técnicos específicos, le invitamos a revisar la docume
 
   
 
-1\. Creción de las tablas(00\_creacion\_db.sql)
+1\. Creación de las tablas(00\_creacion\_db.sql)
 
 2\. Inserción de datos para cada una de las tablas(01\_insert\_db.sql).
 
@@ -42,3 +42,5 @@ Para acceder a detalles técnicos específicos, le invitamos a revisar la docume
 8\. Creación de transacciones(07\_transacciones.sql).
 
 9\. Generación de backup(08\_Backup20240226.sql).
+
+10\. Modelo Diagrama Entidad Relaci[on(09\_Diagrama Entidad-Relación.sql).
