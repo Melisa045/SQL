@@ -43,4 +43,4 @@ Para acceder a detalles técnicos específicos, le invitamos a revisar la docume
 
 9\. Generación de backup(08\_Backup20240226.sql).
 
-10\. Modelo Diagrama Entidad Relaci[on(09\_Diagrama Entidad-Relación.sql).
+10\. Modelo Diagrama Entidad Relación(09\_Diagrama Entidad-Relación.sql).
