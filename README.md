@@ -17,7 +17,7 @@ La base de datos que hemos desarrollado ofrece las siguientes características c
 
   
 
-Para acceder a detalles técnicos específicos, le invitamos a revisar la documentación adjunta, que incluye un diagrama Entidad-Relación, una descripción detallada de las tablas y una secuencia ordenada para ejecutar los scripts necesarios:
+Para acceder a detalles técnicos específicos, le invitamos a revisar la documentación adjunta, que incluye un diagrama Entidad-Relación, descripción detallada de las tablas, reportes en PowerBI ,herramientas utilizadas y una secuencia ordenada para ejecutar los scripts necesarios:
 
   
 
